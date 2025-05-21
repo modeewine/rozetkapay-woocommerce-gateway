@@ -1,107 +1,107 @@
-# Buy with RozetkaPay Gateway for WooCommerce
+# Платіжний шлюз Купити з RozetkaPay для WooCommerce
 
 <p align="center">
-  <img src="assets/img/rozetkapay-logo.svg" alt="RozetkaPay Logo" width="200" />
+  <img src="assets/img/rozetkapay-logo.svg" alt="Логотип RozetkaPay" width="200" />
 </p>
 
-WooCommerce Payment Gateway for Buy with RozetkaPay
+WooCommerce Payment Gateway для Купити з RozetkaPay
 
 ---
 
-## Description
+## Опис
 
-**Buy with RozetkaPay Gateway for WooCommerce** is a payment gateway plugin that allows your WooCommerce store to accept payments via RozetkaPay. It supports both standard checkout and a fast "Pay one-click" button for seamless customer experience.
+**Купити з RozetkaPay Gateway для WooCommerce** — це платіжний шлюз, який дозволяє вашому магазину WooCommerce приймати платежі через RozetkaPay. Підтримує як стандартну оплату на сторінці оформлення замовлення, так і швидку кнопку "Оплатити в один клік" для зручності клієнтів.
 
-- **Version:** 1.0.0
-- **Author:** RozetkaPay
-- **License:** GPL2
-- **Requires PHP:** 7.3+
-- **Requires WordPress:** 6.2+
-- **Requires WooCommerce:** 8.0+
-- **Tested up to WooCommerce:** 9.8
-
----
-
-## Features
-
-- Accept payments via RozetkaPay in WooCommerce checkout
-- "Pay one-click" button on product and cart pages
-- Supports refunds directly from WooCommerce admin
-- Handles RozetkaPay callbacks for payment and refund status
-- Admin metabox for RozetkaPay order/payment info
-- Payment logs (requests, callbacks, errors) with admin UI
-- Multi-language support (translation ready)
+- **Версія:** 1.0.0
+- **Автор:** RozetkaPay
+- **Ліцензія:** GPL2
+- **Вимагає PHP:** 7.3+
+- **Вимагає WordPress:** 6.2+
+- **Вимагає WooCommerce:** 8.0+
+- **Протестовано з WooCommerce:** 9.8
 
 ---
 
-## Installation
+## Можливості
 
-1. **Download** or clone this repository to your `wp-content/plugins` directory:
+- Прийом платежів через RozetkaPay на сторінці оформлення замовлення WooCommerce
+- Кнопка "Оплатити в один клік" на сторінках товару та кошика
+- Підтримка повернень коштів безпосередньо з адмін-панелі WooCommerce
+- Обробка callback-сповіщень RozetkaPay про статуси платежів і повернень
+- Адмін-метабокс з інформацією про замовлення/платіж RozetkaPay
+- Журнали платежів (запити, callback-и, помилки) з інтерфейсом в адмін-панелі
+- Підтримка багатомовності (готовий до перекладу)
+
+---
+
+## Встановлення
+
+1. **Завантажте** або клонуте цей репозиторій у директорію `wp-content/plugins`:
    ```sh
    git clone <repo-url> wp-content/plugins/buy-rozetkapay-woocommerce
    ```
-2. **Activate** the plugin via the WordPress admin panel (`Plugins > Installed Plugins`).
-3. **Ensure WooCommerce is active** and your site meets the minimum requirements (PHP 7.3+, WooCommerce 8.0+).
+2. **Активуйте** плагін через адмін-панель WordPress (`Плагіни > Встановлені плагіни`).
+3. **Переконайтеся, що WooCommerce активний** і ваш сайт відповідає мінімальним вимогам (PHP 7.3+, WooCommerce 8.0+).
 
 ---
 
-## Configuration
+## Налаштування
 
-1. Go to `WooCommerce > Settings > Payments`.
-2. Find **RozetkaPay** in the list and click **Manage**.
-3. Configure the following options:
-   - **Enable/Disable**: Toggle RozetkaPay as a payment method.
-   - **API Login**: Enter your RozetkaPay API login.
-   - **API Password**: Enter your RozetkaPay API password.
-   - **Enable/Disable cart checkout payment gateway**: Show/hide RozetkaPay in the checkout.
-   - **Enable/Disable "Pay one-click" button**: Show/hide the fast payment button on product/cart pages.
-   - **"Pay one-click" button view mode**: Choose between black or white button style.
-
----
-
-## Usage
-
-- **Standard Checkout**: Customers can select RozetkaPay at checkout and complete payment via the RozetkaPay interface.
-- **Pay One-Click**: If enabled, a "Pay one-click" button appears on product and cart pages for instant checkout.
-- **Refunds**: Process refunds from the WooCommerce order admin; RozetkaPay will be notified automatically.
+1. Перейдіть у `WooCommerce > Налаштування > Платежі`.
+2. Знайдіть **RozetkaPay** у списку та натисніть **Керувати**.
+3. Налаштуйте такі опції:
+   - **Увімкнути/Вимкнути**: Активувати або деактивувати RozetkaPay як спосіб оплати.
+   - **API Login**: Введіть ваш логін для API RozetkaPay.
+   - **API Password**: Введіть ваш пароль для API RozetkaPay.
+   - **Увімкнути/Вимкнути платіжний шлюз на сторінці оформлення**: Показувати/приховувати RozetkaPay на сторінці оформлення замовлення.
+   - **Увімкнути/Вимкнути кнопку "Оплатити в один клік"**: Показувати/приховувати швидку кнопку оплати на сторінках товару/кошика.
+   - **Вигляд кнопки "Оплатити в один клік"**: Оберіть чорний або білий стиль кнопки.
 
 ---
 
-## Admin Features
+## Використання
 
-- **Order Metabox**: View RozetkaPay payment info, receipt, and resend callbacks from the order edit screen.
-- **Logs**: Access RozetkaPay logs (`WooCommerce > RozetkaPay Logs`) for requests, callbacks, and errors. Logs can be cleared from the admin UI.
-- **Payment Info Page**: View detailed payment info for each order.
-
----
-
-## Logs
-
-- Logs are stored in the `logs/` directory inside the plugin folder.
-- Types: `requests`, `callbacks`, `errors` (viewable and clearable from the admin panel).
+- **Стандартне оформлення:** Клієнти можуть обрати RozetkaPay при оформленні замовлення та завершити оплату через інтерфейс RozetkaPay.
+- **Оплата в один клік:** Якщо опція увімкнена, кнопка "Оплатити в один клік" з'явиться на сторінках товару та кошика для миттєвої оплати.
+- **Повернення коштів:** Оформлюйте повернення з адмін-панелі WooCommerce — RozetkaPay буде автоматично сповіщено.
 
 ---
 
-## Translation
+## Можливості для адміністратора
 
-- Translation files are located in the `languages/` directory.
-- The plugin is ready for localization. Use `.pot` files to create your own translations.
-
----
-
-## Assets
-
-- Custom styles and images are in the `assets/` directory.
-- The plugin includes a branded RozetkaPay button and logo.
+- **Метабокс замовлення:** Перегляд інформації про платіж RozetkaPay, квитанції, повторна відправка callback-ів на сторінці редагування замовлення.
+- **Журнали:** Доступ до журналів RozetkaPay (`WooCommerce > RozetkaPay Logs`) для запитів, callback-ів та помилок. Журнали можна очищати з адмін-панелі.
+- **Сторінка інформації про платіж:** Детальна інформація про платіж для кожного замовлення.
 
 ---
 
-## Support
+## Журнали
 
-For support, please contact [RozetkaPay](https://rozetkapay.com/) or open an issue in this repository.
+- Журнали зберігаються у директорії `logs/` всередині папки плагіна.
+- Типи: `requests`, `callbacks`, `errors` (перегляд та очищення через адмін-панель).
 
 ---
 
-## License
+## Переклад
 
-This plugin is licensed under the GPL2. See the LICENSE file for details.
+- Файли перекладу знаходяться у директорії `languages/`.
+- Плагін готовий до локалізації. Використовуйте `.pot`-файли для створення власних перекладів.
+
+---
+
+## Активи
+
+- Кастомні стилі та зображення знаходяться у директорії `assets/`.
+- Плагін містить брендовану кнопку та логотип RozetkaPay.
+
+---
+
+## Підтримка
+
+З питань підтримки звертайтеся до [RozetkaPay](https://rozetkapay.com/) або створіть issue у цьому репозиторії.
+
+---
+
+## Ліцензія
+
+Цей плагін ліцензовано за GPL2. Деталі дивіться у файлі LICENSE.
