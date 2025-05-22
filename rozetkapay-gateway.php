@@ -6,7 +6,7 @@
  * Version: 1.0.0
  * Author: RozetkaPay
  * License: GPL2
- * Text Domain: buy-with-rozetkapay-gateway
+ * Text Domain: rozetkapay-gateway
  * Domain Path: /languages
  * Requires PHP: 7.3
  * Requires at least: 6.2
