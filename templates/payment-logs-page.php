@@ -12,7 +12,7 @@
 ?>
 <div class="wrap">
     <h1><?php esc_html_e('RozetkaPay Logs', RozetkaPay_Const::TEXT_DOMAIN); ?></h1>
-	<?php
+    <?php
 
         if (
             isset($_POST['rozetkapay_clear_logs'])
@@ -25,7 +25,7 @@
                 . '</p></div>';
         }
 
-	?>
+    ?>
     <h2><?php echo esc_html( ucfirst( str_replace('_', ' ', $logs_type ) ) ); ?></h2>
     <form method="post">
         <?php wp_nonce_field('rozetkapay_clear_log_action', 'rozetkapay_clear_log_nonce'); ?>

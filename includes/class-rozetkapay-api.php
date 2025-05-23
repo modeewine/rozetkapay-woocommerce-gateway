@@ -7,7 +7,7 @@
  */
 
 if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly
+    exit; // Exit if accessed directly
 }
 
 /**
@@ -24,7 +24,7 @@ class RozetkaPay_API
      *
      * @return array|WP_Error API response or WP_Error on failure.
      */
-	public static function create_payment(
+    public static function create_payment(
         array $payment_data,
         string $login,
         string $password
@@ -37,37 +37,37 @@ class RozetkaPay_API
             $password,
         );
 
-		if (!is_array($response)) {
-			return new WP_Error(
+        if (!is_array($response)) {
+            return new WP_Error(
                 'invalid_response',
                 __('Invalid API response from RozetkaPay', RozetkaPay_Const::TEXT_DOMAIN),
             );
-		}
+        }
 
-		if (
+        if (
             empty($response['action']['type'])
             || $response['action']['type'] !== 'url'
             || empty($response['action']['value'])
         ) {
-			return new WP_Error(
+            return new WP_Error(
                 'missing_action_url',
                 __('Missing payment URL from RozetkaPay response', RozetkaPay_Const::TEXT_DOMAIN),
             );
-		}
+        }
 
-		return $response;
-	}
+        return $response;
+    }
 
-	/**
-	 * Get payment information from RozetkaPay API.
-	 *
-	 * @param int $order_id External order ID.
-	 * @param string $login API login.
-	 * @param string $password API password.
-	 *
-	 * @return array|WP_Error API response or WP_Error on failure.
-	 */
-	public static function get_payment_info(
+    /**
+     * Get payment information from RozetkaPay API.
+     *
+     * @param int $order_id External order ID.
+     * @param string $login API login.
+     * @param string $password API password.
+     *
+     * @return array|WP_Error API response or WP_Error on failure.
+     */
+    public static function get_payment_info(
         int $order_id,
         string $login,
         string $password
@@ -80,7 +80,7 @@ class RozetkaPay_API
             $login,
             $password,
         );
-	}
+    }
 
     /**
      * Get payment receipt from RozetkaPay API.
@@ -168,24 +168,24 @@ class RozetkaPay_API
         return trailingslashit(RozetkaPay_Const::API_BASE_URL) . ltrim($path, '/');
     }
 
-	/**
-	 * Get headers for API request.
-	 *
-	 * @param string $login    API login.
-	 * @param string $password API password.
-	 *
-	 * @return array
-	 */
-	private static function get_headers(string $login, string $password): array
+    /**
+     * Get headers for API request.
+     *
+     * @param string $login    API login.
+     * @param string $password API password.
+     *
+     * @return array
+     */
+    private static function get_headers(string $login, string $password): array
     {
-		$auth = base64_encode(sprintf('%s:%s', $login, $password));
+        $auth = base64_encode(sprintf('%s:%s', $login, $password));
 
-		return [
-			'Authorization' => 'Basic ' . $auth,
-			'Content-Type' => 'application/json',
-			'Accept' => 'application/json',
-		];
-	}
+        return [
+            'Authorization' => 'Basic ' . $auth,
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ];
+    }
 
     /**
      * Inner method for sending GET request

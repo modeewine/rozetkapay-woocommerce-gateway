@@ -7,7 +7,7 @@
  */
 
 if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly
+    exit; // Exit if accessed directly
 }
 
 /**
@@ -15,23 +15,23 @@ if (!defined('ABSPATH')) {
  */
 class RozetkaPay_Callback
 {
-	/**
-	 * Initialize callback endpoint.
-	 */
-	public static function init(): void {
-		add_action(
+    /**
+     * Initialize callback endpoint.
+     */
+    public static function init(): void {
+        add_action(
             sprintf(
                 'woocommerce_api_%s',
                 strtolower(RozetkaPay_Helper::get_class_name(RozetkaPay_Callback::class)),
             ),
             [__CLASS__, 'handle_callback'],
         );
-	}
+    }
 
-	/**
-	 * Handle the incoming callback from RozetkaPay.
-	 */
-	public static function handle_callback(): void
+    /**
+     * Handle the incoming callback from RozetkaPay.
+     */
+    public static function handle_callback(): void
     {
         $data = self::extractRequestJsonData();
         $parsedData = json_decode($data, true);
@@ -105,9 +105,9 @@ class RozetkaPay_Callback
 
         self::set_order_payment_operation_type($order, $dataStructureType);
 
-		status_header(200);
-		exit('Callback processed');
-	}
+        status_header(200);
+        exit('Callback processed');
+    }
 
     /**
      * Extract and decode form data from the callback request
