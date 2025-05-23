@@ -61,11 +61,7 @@ class RozetkaPay_Helper
 
     public static function get_request_header_value(string $name): ?string
     {
-        return sanitize_text_field(
-            wp_unslash(
-                $_SERVER['HTTP_' . strtoupper(str_replace('-', '_', $name))] ?? null
-            )
-        );
+        return $_SERVER['HTTP_' . strtoupper(str_replace('-', '_', $name))] ?? null;
     }
 
     public static function encode_safe_base64(string $data): string
