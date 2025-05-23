@@ -54,9 +54,18 @@ class RozetkaPay_Helper
         );
     }
 
+    public static function generate_nonce_key(string $id, string $postfix = ''): string
+    {
+        return sprintf('%s_%s%s', RozetkaPay_Const::ID_PAYMENT_GATEWAY, $id, $postfix);
+    }
+
     public static function get_request_header_value(string $name): ?string
     {
-        return $_SERVER['HTTP_' . strtoupper(str_replace('-', '_', $name))] ?? null;
+        return sanitize_text_field(
+            wp_unslash(
+                $_SERVER['HTTP_' . strtoupper(str_replace('-', '_', $name))] ?? null
+            )
+        );
     }
 
     public static function encode_safe_base64(string $data): string

@@ -13,24 +13,25 @@
     }
 
 ?>
-<input type="hidden" name="<?php echo RozetkaPay_Const::ID_BUY_ONE_CLICK; ?>" value="" />
+<?php wp_nonce_field('rozetkapay_one_click_action', 'rozetkapay_one_click_nonce'); ?>
+<input type="hidden" name="<?php echo esc_html(RozetkaPay_Const::ID_BUY_ONE_CLICK); ?>" value="" />
 <div class="btn-rozetka-wrapper">
     <button
-        class="button alt wp-element-button btn-rozetka <?php echo $css_class; ?> view-variant_2"
+        class="button alt wp-element-button btn-rozetka <?php echo esc_html($css_class); ?> view-variant_2"
         onclick="return rozetkapay_one_click(this);"
     >
-        <span><?php _e('Купити з', RozetkaPay_Const::TEXT_DOMAIN); ?></span>
+        <span><?php esc_html_e('Купити з', 'rozetkapay-gateway'); ?></span>
         <img
-             src="<?php echo ROZETKAPAY_GATEWAY_PLUGIN_URL; ?>assets/img/rozetka_ec_logo_variant_2_<?php echo $img_color; ?>.svg"
+             src="<?php echo esc_url(ROZETKAPAY_GATEWAY_PLUGIN_URL); ?>assets/img/rozetka_ec_logo_variant_2_<?php echo esc_html($img_color); ?>.svg"
              class="img-responsive"
-             alt="<?php _e('Buy via RozetkaPay', RozetkaPay_Const::TEXT_DOMAIN); ?>"
+             alt="<?php esc_html_e('Buy via RozetkaPay', 'rozetkapay-gateway'); ?>"
         >
     </button>
 </div>
 <script type="text/javascript">
     function rozetkapay_one_click(_this) {
-        let product_id = <?php echo $product->get_id(); ?>;
-        let roc = jQuery('input[name=<?php echo RozetkaPay_Const::ID_BUY_ONE_CLICK; ?>]');
+        let product_id = <?php echo esc_js($product->get_id()); ?>;
+        let roc = jQuery('input[name=<?php echo esc_js(RozetkaPay_Const::ID_BUY_ONE_CLICK); ?>]');
 
         roc.prop({value: product_id});
         jQuery(_this).closest('form').submit();

@@ -58,11 +58,22 @@ class RozetkaPay_One_Click
 
     public static function handle_action(): void
     {
-        if (!isset($_POST[RozetkaPay_Const::ID_BUY_ONE_CLICK])) {
+        $nonce_key = 'rozetkapay_one_click_nonce';
+
+        if (
+            !isset($_POST[RozetkaPay_Const::ID_BUY_ONE_CLICK])
+            || !isset($_POST[$nonce_key])
+        ) {
             return;
         }
 
-        $one_click_value = trim($_POST[RozetkaPay_Const::ID_BUY_ONE_CLICK]);
+        $nonce_value = sanitize_text_field(wp_unslash($_POST[$nonce_key]));
+
+        if (!wp_verify_nonce($nonce_value, 'rozetkapay_one_click_action')) {
+            return;
+        }
+
+        $one_click_value = trim(sanitize_text_field(wp_unslash($_POST[RozetkaPay_Const::ID_BUY_ONE_CLICK])));
 
         if ($one_click_value === '') {
             return;

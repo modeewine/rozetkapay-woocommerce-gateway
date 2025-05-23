@@ -220,7 +220,7 @@ class RozetkaPay_Callback
             ]);
 
             status_header(406);
-            exit($message);
+            exit(esc_html($message));
         }
     }
 
@@ -357,11 +357,11 @@ class RozetkaPay_Callback
                     && !$order->is_paid()
                 ) {
                     $order->payment_complete($transaction_id ?? '');
-                    $order->add_order_note(__('Payment completed via RozetkaPay', RozetkaPay_Const::TEXT_DOMAIN));
+                    $order->add_order_note(__('Payment completed via RozetkaPay', 'rozetkapay-gateway'));
                 } elseif ($operation_status === 'failure' && $order->get_status() !== 'failed') {
                     $order->update_status(
                         'failed',
-                        __('Payment failed via RozetkaPay', RozetkaPay_Const::TEXT_DOMAIN),
+                        __('Payment failed via RozetkaPay', 'rozetkapay-gateway'),
                     );
                 }
                 break;
@@ -371,7 +371,7 @@ class RozetkaPay_Callback
                 if ($operation_status === 'success' && $order->get_status() !== 'cancelled') {
                     $order->update_status(
                         'cancelled',
-                        __('Payment cancelled via RozetkaPay', RozetkaPay_Const::TEXT_DOMAIN),
+                        __('Payment cancelled via RozetkaPay', 'rozetkapay-gateway'),
                     );
                 }
                 break;
@@ -441,7 +441,8 @@ class RozetkaPay_Callback
         $order->set_shipping_address_1($address_1);
 
         if (!empty($value = $shippingData['apartment'] ?? null)) {
-            $order->set_shipping_address_2(sprintf(__('apartment %s'), $value));
+            /* translators: apartment value */
+            $order->set_shipping_address_2(sprintf(__('apartment %s', 'rozetkapay-gateway'), $value));
         }
 
         if (!empty($value = $shippingData['delivery_type'] ?? null)) {

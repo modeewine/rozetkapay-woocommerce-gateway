@@ -111,9 +111,17 @@ function rozetkapay_gateway_register_gateway($methods): array
  */
 function rozetkapay_gateway_activate(): void
 {
+    /** @global WP_Filesystem_Base $wp_filesystem */
+    global $wp_filesystem;
+
+    if (empty($wp_filesystem)) {
+        require_once ABSPATH . '/wp-admin/includes/file.php';
+        WP_Filesystem();
+    }
+
     $log_dir = ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'logs';
 
-    if (!file_exists($log_dir)) {
-        mkdir($log_dir, 0755, true);
+    if (!$wp_filesystem->is_dir($log_dir)) {
+        $wp_filesystem->mkdir($log_dir, FS_CHMOD_DIR);
     }
 }

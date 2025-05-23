@@ -11,7 +11,7 @@
 
 ?>
 <div class="wrap">
-    <h1><?php esc_html_e('RozetkaPay Logs', RozetkaPay_Const::TEXT_DOMAIN); ?></h1>
+    <h1><?php esc_html_e('RozetkaPay Logs', 'rozetkapay-gateway'); ?></h1>
     <?php
 
         if (
@@ -21,27 +21,27 @@
             RozetkaPay_Logger::clear_logs($logs_type);
 
             echo '<div class="updated notice"><p>'
-                . __('Logs are cleared successfully', RozetkaPay_Const::TEXT_DOMAIN)
+                . esc_html__('Logs are cleared successfully', 'rozetkapay-gateway')
                 . '</p></div>';
         }
 
     ?>
-    <h2><?php echo esc_html( ucfirst( str_replace('_', ' ', $logs_type ) ) ); ?></h2>
+    <h2><?php echo esc_html(ucfirst(str_replace('_', ' ', $logs_type))); ?></h2>
     <form method="post">
         <?php wp_nonce_field('rozetkapay_clear_log_action', 'rozetkapay_clear_log_nonce'); ?>
-        <input type="hidden" name="log_type" value="<?php echo $logs_type; ?>" />
+        <input type="hidden" name="log_type" value="<?php echo esc_html($logs_type); ?>" />
         <p>
             <button type="submit" name="rozetkapay_clear_logs" class="button button-secondary">
-                <?php esc_html_e('Clear Logs', RozetkaPay_Const::TEXT_DOMAIN); ?>
+                <?php esc_html_e('Clear Logs', 'rozetkapay-gateway'); ?>
             </button>
         </p>
     </form>
-    <?php if (!empty( $logs)) : ?>
+    <?php if (!empty($logs)): ?>
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th><?php _e('Timestamp', RozetkaPay_Const::TEXT_DOMAIN); ?></th>
-                    <th><?php _e('Data', RozetkaPay_Const::TEXT_DOMAIN); ?></th>
+                    <th><?php esc_html_e('Timestamp', 'rozetkapay-gateway'); ?></th>
+                    <th><?php esc_html_e('Data', 'rozetkapay-gateway'); ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -53,7 +53,15 @@
                         ?>
                         <tr>
                             <td style="white-space: nowrap; font-size: 11px;">
-                                <?php echo str_replace(' ', '<br />', $log_entry['timestamp']); ?>
+                                <?php
+
+                                    $timestamp = explode(' ', $log_entry['timestamp']);
+
+                                    echo esc_html($timestamp[0] ?? '');
+                                    echo '<br />';
+                                    echo esc_html($timestamp[1] ?? '');
+
+                                ?>
                             </td>
                             <td>
                                 <pre
@@ -68,6 +76,6 @@
             </tbody>
         </table>
     <?php else : ?>
-        <p><?php _e('No log entries found', RozetkaPay_Const::TEXT_DOMAIN); ?></p>
+        <p><?php esc_html_e('No log entries found', 'rozetkapay-gateway'); ?></p>
     <?php endif; ?>
 </div>
