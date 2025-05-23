@@ -58,16 +58,33 @@ class RozetkaPay_One_Click
 
     public static function handle_action(): void
     {
-        if (!isset($_POST[RozetkaPay_Const::ID_BUY_ONE_CLICK])) {
+        $nonce_key = 'rozetkapay_one_click_nonce';
+
+        if (
+            !isset($_POST[RozetkaPay_Const::ID_BUY_ONE_CLICK])
+            || !isset($_POST[$nonce_key])
+        ) {
             return;
         }
 
-        $product_id = (int) $_POST[RozetkaPay_Const::ID_BUY_ONE_CLICK];
+        $nonce_value = sanitize_text_field(wp_unslash($_POST[$nonce_key]));
+
+        if (!wp_verify_nonce($nonce_value, 'rozetkapay_one_click_action')) {
+            return;
+        }
+
+        $one_click_value = trim(sanitize_text_field(wp_unslash($_POST[RozetkaPay_Const::ID_BUY_ONE_CLICK])));
+
+        if ($one_click_value === '') {
+            return;
+        }
+
+        $one_click_value = (int) $one_click_value;
 
         $order = wc_create_order();
 
-        if ($product_id > 0) {
-            $order->add_product(wc_get_product($product_id));
+        if ($one_click_value > 0) {
+            $order->add_product(wc_get_product($one_click_value));
         } else {
             $cart_items = WC()->cart->get_cart();
 
