@@ -62,12 +62,18 @@ class RozetkaPay_One_Click
             return;
         }
 
-        $product_id = (int) $_POST[RozetkaPay_Const::ID_BUY_ONE_CLICK];
+        $one_click_value = trim($_POST[RozetkaPay_Const::ID_BUY_ONE_CLICK]);
+
+        if ($one_click_value === '') {
+            return;
+        }
+
+        $one_click_value = (int) $one_click_value;
 
         $order = wc_create_order();
 
-        if ($product_id > 0) {
-            $order->add_product(wc_get_product($product_id));
+        if ($one_click_value > 0) {
+            $order->add_product(wc_get_product($one_click_value));
         } else {
             $cart_items = WC()->cart->get_cart();
 

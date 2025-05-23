@@ -14,7 +14,7 @@ if ($view_mode === 'white') {
 
 ?>
 <form method="post" action="">
-    <input type="hidden" name="<?php echo RozetkaPay_Const::ID_BUY_ONE_CLICK; ?>" value="" />
+    <input type="hidden" name="<?php echo RozetkaPay_Const::ID_BUY_ONE_CLICK; ?>" value="-1" />
     <div class="btn-rozetka-wrapper">
         <button
             class="button alt wp-element-button btn-rozetka <?php echo $css_class; ?> view-variant_2"
