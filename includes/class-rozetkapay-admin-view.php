@@ -141,7 +141,7 @@ class RozetkaPay_Admin_View
                 RozetkaPay_Helper::generate_nonce_key('payment-info', '_action')
             )
         ) {
-            die('Wrong action nonce');
+            wp_die('Wrong action nonce');
         }
 
         $order_id = (int) $_GET['order_id'] ?? 0;

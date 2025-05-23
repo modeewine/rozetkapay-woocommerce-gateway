@@ -49,7 +49,7 @@ class RozetkaPay_Order_Payment_Action
                 RozetkaPay_Helper::generate_nonce_key('payment-receipt', '_action')
             )
         ) {
-            die('Wrong action nonce');
+            wp_die('Wrong action nonce');
         }
 
         $order_id = (int) $_GET['order_id'] ?? 0;
@@ -88,7 +88,7 @@ class RozetkaPay_Order_Payment_Action
                 RozetkaPay_Helper::generate_nonce_key('resend-payment-callback', '_action')
             )
         ) {
-            die('Wrong action nonce');
+            wp_die('Wrong action nonce');
         }
 
         $order_id = (int) $_GET['order_id'] ?? 0;
