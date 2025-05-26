@@ -2,7 +2,7 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Buy with RozetkaPay Gateway for WooCommerce 1.0.0\n"
+"Project-Id-Version: Buy with RozetkaPay Gateway for WooCommerce 1.0.4\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: RozetkaPay\n"
 "Language-Team: RozetkaPay\n"
