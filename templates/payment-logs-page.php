@@ -11,7 +11,7 @@
 
 ?>
 <div class="wrap">
-    <h1><?php esc_html_e('RozetkaPay Logs', 'rozetkapay-gateway'); ?></h1>
+    <h1><?php esc_html_e('RozetkaPay Logs', 'buy-rozetkapay-woocommerce'); ?></h1>
     <?php
 
         if (
@@ -21,7 +21,7 @@
             RozetkaPay_Logger::clear_logs($logs_type);
 
             echo '<div class="updated notice"><p>'
-                . esc_html__('Logs are cleared successfully', 'rozetkapay-gateway')
+                . esc_html__('Logs are cleared successfully', 'buy-rozetkapay-woocommerce')
                 . '</p></div>';
         }
 
@@ -32,7 +32,7 @@
         <input type="hidden" name="log_type" value="<?php echo esc_html($logs_type); ?>" />
         <p>
             <button type="submit" name="rozetkapay_clear_logs" class="button button-secondary">
-                <?php esc_html_e('Clear Logs', 'rozetkapay-gateway'); ?>
+                <?php esc_html_e('Clear Logs', 'buy-rozetkapay-woocommerce'); ?>
             </button>
         </p>
     </form>
@@ -40,8 +40,8 @@
         <table class="widefat striped">
             <thead>
                 <tr>
-                    <th><?php esc_html_e('Timestamp', 'rozetkapay-gateway'); ?></th>
-                    <th><?php esc_html_e('Data', 'rozetkapay-gateway'); ?></th>
+                    <th><?php esc_html_e('Timestamp', 'buy-rozetkapay-woocommerce'); ?></th>
+                    <th><?php esc_html_e('Data', 'buy-rozetkapay-woocommerce'); ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -76,6 +76,6 @@
             </tbody>
         </table>
     <?php else : ?>
-        <p><?php esc_html_e('No log entries found', 'rozetkapay-gateway'); ?></p>
+        <p><?php esc_html_e('No log entries found', 'buy-rozetkapay-woocommerce'); ?></p>
     <?php endif; ?>
 </div>

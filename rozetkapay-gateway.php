@@ -3,13 +3,14 @@
  * Plugin Name: Buy with RozetkaPay Gateway for WooCommerce
  * Plugin URI:
  * Description: WooCommerce Payment Gateway for Buy with RozetkaPay
- * Version: 1.0.0
+ * Version: 1.0.3
  * Author: RozetkaPay
  * License: GPL2
- * Text Domain: rozetkapay-gateway
+ * Text Domain: buy-rozetkapay-woocommerce
  * Domain Path: /languages
  * Requires PHP: 7.3
  * Requires at least: 6.2
+ * Tested up to: 6.8
  * WC requires at least: 8.0
  * WC tested up to: 9.8
  */
@@ -27,7 +28,7 @@ add_action('plugins_loaded', function(){
     require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-const.php';
 
     load_plugin_textdomain(
-        RozetkaPay_Const::TEXT_DOMAIN,
+        'buy-rozetkapay-woocommerce',
         false,
         dirname(plugin_basename(__FILE__)) . '/languages',
     );

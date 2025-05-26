@@ -40,7 +40,7 @@ class RozetkaPay_API
         if (!is_array($response)) {
             return new WP_Error(
                 'invalid_response',
-                __('Invalid API response from RozetkaPay', 'rozetkapay-gateway'),
+                __('Invalid API response from RozetkaPay', 'buy-rozetkapay-woocommerce'),
             );
         }
 
@@ -51,7 +51,7 @@ class RozetkaPay_API
         ) {
             return new WP_Error(
                 'missing_action_url',
-                __('Missing payment URL from RozetkaPay response', 'rozetkapay-gateway'),
+                __('Missing payment URL from RozetkaPay response', 'buy-rozetkapay-woocommerce'),
             );
         }
 
@@ -242,7 +242,7 @@ class RozetkaPay_API
         if (!is_array($body)) {
             return new WP_Error(
                 'invalid_response',
-                __('Invalid API response from RozetkaPay', 'rozetkapay-gateway'),
+                __('Invalid API response from RozetkaPay', 'buy-rozetkapay-woocommerce'),
             );
         }
 
@@ -299,7 +299,7 @@ class RozetkaPay_API
         if (!is_array($body)) {
             return new WP_Error(
                 'invalid_response',
-                __('Invalid API response from RozetkaPay', 'rozetkapay-gateway'),
+                __('Invalid API response from RozetkaPay', 'buy-rozetkapay-woocommerce'),
             );
         }
 
