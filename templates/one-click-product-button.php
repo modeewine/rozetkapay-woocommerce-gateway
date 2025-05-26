@@ -20,11 +20,11 @@
         class="button alt wp-element-button btn-rozetka <?php echo esc_html($css_class); ?> view-variant_2"
         onclick="return rozetkapay_one_click(this);"
     >
-        <span><?php esc_html_e('Купити з', 'rozetkapay-gateway'); ?></span>
+        <span><?php esc_html_e('Купити з', 'buy-rozetkapay-woocommerce'); ?></span>
         <img
              src="<?php echo esc_url(ROZETKAPAY_GATEWAY_PLUGIN_URL); ?>assets/img/rozetka_ec_logo_variant_2_<?php echo esc_html($img_color); ?>.svg"
              class="img-responsive"
-             alt="<?php esc_html_e('Buy via RozetkaPay', 'rozetkapay-gateway'); ?>"
+             alt="<?php esc_html_e('Buy via RozetkaPay', 'buy-rozetkapay-woocommerce'); ?>"
         >
     </button>
 </div>

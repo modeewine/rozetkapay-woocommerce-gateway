@@ -11,7 +11,7 @@ class RozetkaPay_Admin_View
             add_action('add_meta_boxes', function(){
                 add_meta_box(
                     'rozetkapay-order-metabox',
-                    __('RozetkaPay order', 'rozetkapay-gateway'),
+                    __('RozetkaPay order', 'buy-rozetkapay-woocommerce'),
                     [__CLASS__, 'view_order_metabox'],
                     wc_get_page_screen_id('shop-order'),
                     'side',
@@ -23,7 +23,7 @@ class RozetkaPay_Admin_View
         add_action('admin_menu', function(){
             add_submenu_page(
                 null,
-                __('RozetkaPay payment information', 'rozetkapay-gateway'),
+                __('RozetkaPay payment information', 'buy-rozetkapay-woocommerce'),
                 null,
                 'edit_shop_orders',
                 'rozetkapay-payment-info',
@@ -40,7 +40,7 @@ class RozetkaPay_Admin_View
 
         if (!empty($patronym)) {
             echo '<div class="address"><p><strong>'
-                . esc_html__('Patronym', 'rozetkapay-gateway')
+                . esc_html__('Patronym', 'buy-rozetkapay-woocommerce')
                 . ':</strong> '
                 . esc_html($patronym)
                 . '</p></div>';
@@ -50,7 +50,7 @@ class RozetkaPay_Admin_View
 
         if (!empty($transaction_id)) {
             echo '<div class="address"><p><strong>'
-                . esc_html__('Transaction ID', 'rozetkapay-gateway')
+                . esc_html__('Transaction ID', 'buy-rozetkapay-woocommerce')
                 . ':</strong> '
                 . esc_html($transaction_id)
                 . '</p></div>';
@@ -61,7 +61,7 @@ class RozetkaPay_Admin_View
 
         if ($payment_operation_type === 'post_payment') {
             echo '<div class="address"><p><strong>'
-                . esc_html__('Payment upon receipt', 'rozetkapay-gateway')
+                . esc_html__('Payment upon receipt', 'buy-rozetkapay-woocommerce')
                 . '</strong></p></div>';
         }
     }
@@ -72,7 +72,7 @@ class RozetkaPay_Admin_View
 
         if (!empty($patronym)) {
             echo '<div class="address"><p><strong>'
-                . esc_html__('Patronym', 'rozetkapay-gateway')
+                . esc_html__('Patronym', 'buy-rozetkapay-woocommerce')
                 . ':</strong> '
                 . esc_html($patronym)
                 . '</p></div>';
@@ -82,7 +82,7 @@ class RozetkaPay_Admin_View
 
         if (!empty($delivery_type)) {
             echo '<div class="address"><p><strong>'
-                . esc_html__('Delivery type', 'rozetkapay-gateway')
+                . esc_html__('Delivery type', 'buy-rozetkapay-woocommerce')
                 . ':</strong> '
                 . esc_html(self::map_delivery_type($delivery_type))
                 . '</p></div>';
@@ -92,7 +92,7 @@ class RozetkaPay_Admin_View
 
         if (!empty($provider)) {
             echo '<div class="address"><p><strong>'
-                . esc_html__('Provider', 'rozetkapay-gateway')
+                . esc_html__('Provider', 'buy-rozetkapay-woocommerce')
                 . ':</strong> '
                 . esc_html($provider)
                 . '</p></div>';
@@ -106,7 +106,7 @@ class RozetkaPay_Admin_View
 
         if (!empty($warehouse_number)) {
             echo '<div class="address"><p><strong>'
-                . esc_html__('Warehouse number', 'rozetkapay-gateway')
+                . esc_html__('Warehouse number', 'buy-rozetkapay-woocommerce')
                 . ':</strong> '
                 . esc_html($warehouse_number)
                 . '</p></div>';
@@ -199,8 +199,8 @@ class RozetkaPay_Admin_View
             $main_slug = 'rozetkapay-payment-logs';
 
             add_menu_page(
-                __('RozetkaPay Logs', 'rozetkapay-gateway'),
-                __('RozetkaPay Logs', 'rozetkapay-gateway'),
+                __('RozetkaPay Logs', 'buy-rozetkapay-woocommerce'),
+                __('RozetkaPay Logs', 'buy-rozetkapay-woocommerce'),
                 'manage_woocommerce',
                 $main_slug,
                 null,
@@ -212,8 +212,8 @@ class RozetkaPay_Admin_View
 
             add_submenu_page(
                 $main_slug,
-                __('Requests', 'rozetkapay-gateway'),
-                __('Requests', 'rozetkapay-gateway'),
+                __('Requests', 'buy-rozetkapay-woocommerce'),
+                __('Requests', 'buy-rozetkapay-woocommerce'),
                 'manage_woocommerce',
                 $main_slug,
                 [__CLASS__, 'view_payment_request_logs_page'],
@@ -221,8 +221,8 @@ class RozetkaPay_Admin_View
 
             add_submenu_page(
                 $main_slug,
-                __('Callbacks', 'rozetkapay-gateway'),
-                __('Callbacks', 'rozetkapay-gateway'),
+                __('Callbacks', 'buy-rozetkapay-woocommerce'),
+                __('Callbacks', 'buy-rozetkapay-woocommerce'),
                 'manage_woocommerce',
                 'rozetkapay-payment-callback-logs',
                 [__CLASS__, 'view_payment_callback_logs_page'],
@@ -230,8 +230,8 @@ class RozetkaPay_Admin_View
 
             add_submenu_page(
                 $main_slug,
-                __('Errors', 'rozetkapay-gateway'),
-                __('Errors', 'rozetkapay-gateway'),
+                __('Errors', 'buy-rozetkapay-woocommerce'),
+                __('Errors', 'buy-rozetkapay-woocommerce'),
                 'manage_woocommerce',
                 'rozetkapay-payment-error-logs',
                 [__CLASS__, 'view_payment_error_logs_page'],
@@ -243,11 +243,11 @@ class RozetkaPay_Admin_View
     {
         switch (strtoupper($delivery_type)) {
             case 'W':
-                return __('Department', 'rozetkapay-gateway');
+                return __('Department', 'buy-rozetkapay-woocommerce');
             case 'P':
-                return __('Paketautomat', 'rozetkapay-gateway');
+                return __('Paketautomat', 'buy-rozetkapay-woocommerce');
             case 'D':
-                return __('Courier', 'rozetkapay-gateway');
+                return __('Courier', 'buy-rozetkapay-woocommerce');
             default:
                 return '-';
         }

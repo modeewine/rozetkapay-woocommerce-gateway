@@ -24,8 +24,8 @@ class RozetkaPay_Gateway extends WC_Payment_Gateway
      */
     public function __construct() {
         $this->id = RozetkaPay_Const::ID_PAYMENT_GATEWAY;
-        $this->method_title = __('RozetkaPay', 'rozetkapay-gateway');
-        $this->method_description = __('Accept payments via Buy with RozetkaPay', 'rozetkapay-gateway');
+        $this->method_title = __('RozetkaPay', 'buy-rozetkapay-woocommerce');
+        $this->method_description = __('Accept payments via Buy with RozetkaPay', 'buy-rozetkapay-woocommerce');
         $this->icon = ROZETKAPAY_GATEWAY_PLUGIN_URL . 'assets/img/rozetkapay-logo.svg'; // Path to icon
         $this->has_fields = false;
 
@@ -37,8 +37,8 @@ class RozetkaPay_Gateway extends WC_Payment_Gateway
         $this->enabled = $this->get_option('enabled');
         $this->cart_checkout_gateway_enabled =
             $this->get_option('cart_checkout_gateway_enabled', 'yes') === 'yes';
-        $this->title = __('RozetkaPay', 'rozetkapay-gateway');
-        $this->description = __('Pay via Buy with RozetkaPay', 'rozetkapay-gateway');
+        $this->title = __('RozetkaPay', 'buy-rozetkapay-woocommerce');
+        $this->description = __('Pay via Buy with RozetkaPay', 'buy-rozetkapay-woocommerce');
         $this->one_click_button_enabled =
             $this->get_option('one_click_button_enabled', 'yes') === 'yes';
         $this->one_click_button_view_mode = $this->get_option('one_click_button_view_mode', 'black');
@@ -61,43 +61,43 @@ class RozetkaPay_Gateway extends WC_Payment_Gateway
     {
         $this->form_fields = [
             'enabled'      => [
-                'title'   => __('Enable/Disable', 'rozetkapay-gateway'),
+                'title'   => __('Enable/Disable', 'buy-rozetkapay-woocommerce'),
                 'type'    => 'checkbox',
-                'label'   => __('Enable RozetkaPay Payment', 'rozetkapay-gateway'),
+                'label'   => __('Enable RozetkaPay Payment', 'buy-rozetkapay-woocommerce'),
                 'default' => 'yes',
             ],
             'cart_checkout_gateway_enabled' => [
-                'title'       => '',
+                'title'       => __('Enable/Disable cart checkout payment gateway', 'buy-rozetkapay-woocommerce'),
                 'type'        => 'checkbox',
-                'label'       => __('Enable/Disable cart checkout payment gateway', 'rozetkapay-gateway'),
+                'label'       => __('Enable/Disable cart checkout payment gateway', 'buy-rozetkapay-woocommerce'),
                 'default'     => '',
             ],
             'one_click_button_enabled' => [
-                'title'       => '',
+                'title'       => __('Enable/Disable `Pay one-click` button', 'buy-rozetkapay-woocommerce'),
                 'type'        => 'checkbox',
-                'label'       => __('Enable/Disable `Pay one-click` button', 'rozetkapay-gateway'),
+                'label'       => __('Enable/Disable `Pay one-click` button', 'buy-rozetkapay-woocommerce'),
                 'default'     => 'yes',
             ],
             'one_click_button_view_mode' => [
-                'title' => __('`Pay one-click` button view mode', 'rozetkapay-gateway'),
+                'title' => __('`Pay one-click` button view mode', 'buy-rozetkapay-woocommerce'),
                 'type' => 'select',
-                'description' => __('Select button view mode', 'rozetkapay-gateway'),
+                'description' => __('Select button view mode', 'buy-rozetkapay-woocommerce'),
                 'default' => 'black',
                 'options' => [
-                    'black' => __('Black', 'rozetkapay-gateway'),
-                    'white' => __('White', 'rozetkapay-gateway'),
+                    'black' => __('Black', 'buy-rozetkapay-woocommerce'),
+                    'white' => __('White', 'buy-rozetkapay-woocommerce'),
                 ],
             ],
             'login' => [
-                'title' => __('API Login', 'rozetkapay-gateway'),
+                'title' => __('API Login', 'buy-rozetkapay-woocommerce'),
                 'type' => 'text',
-                'description' => __('Enter your RozetkaPay API login', 'rozetkapay-gateway'),
+                'description' => __('Enter your RozetkaPay API login', 'buy-rozetkapay-woocommerce'),
                 'default' => '',
             ],
             'password' => [
-                'title' => __('API Password', 'rozetkapay-gateway'),
+                'title' => __('API Password', 'buy-rozetkapay-woocommerce'),
                 'type' => 'password',
-                'description' => __('Enter your RozetkaPay API password', 'rozetkapay-gateway'),
+                'description' => __('Enter your RozetkaPay API password', 'buy-rozetkapay-woocommerce'),
                 'default' => '',
             ],
         ];
@@ -115,7 +115,7 @@ class RozetkaPay_Gateway extends WC_Payment_Gateway
         $order = wc_get_order($order_id);
 
         if (!$order) {
-            wc_add_notice(__('Invalid order', 'rozetkapay-gateway'), 'error');
+            wc_add_notice(__('Invalid order', 'buy-rozetkapay-woocommerce'), 'error');
 
             return ['result' => 'fail'];
         }
@@ -129,7 +129,7 @@ class RozetkaPay_Gateway extends WC_Payment_Gateway
             'init_recurrent_payment' => false,
             'confirm' => true,
             /* translators: order number (id) description */
-            'description' => sprintf(__('RozetkaPay order #%s', 'rozetkapay-gateway'), $order->get_order_number()),
+            'description' => sprintf(__('RozetkaPay order #%s', 'buy-rozetkapay-woocommerce'), $order->get_order_number()),
             'callback_url' => WC()->api_request_url(
                 RozetkaPay_Helper::get_class_name(RozetkaPay_Callback::class),
             ),
@@ -148,7 +148,7 @@ class RozetkaPay_Gateway extends WC_Payment_Gateway
         }
 
         // Mark order as pending payment
-        $order->update_status('pending', __('Awaiting RozetkaPay payment', 'rozetkapay-gateway'));
+        $order->update_status('pending', __('Awaiting RozetkaPay payment', 'buy-rozetkapay-woocommerce'));
 
         // Redirect to payment page
         return [
@@ -183,7 +183,7 @@ class RozetkaPay_Gateway extends WC_Payment_Gateway
         ) {
             $message = __(
                 'Refund was initialized. Waiting for a response from RozetkaPay.',
-                'rozetkapay-gateway'
+                'buy-rozetkapay-woocommerce'
             );
 
             $order->add_order_note($message);
@@ -191,7 +191,7 @@ class RozetkaPay_Gateway extends WC_Payment_Gateway
             return new WP_Error('refund_pending', $message);
         }
 
-        return new WP_Error('refund_failed', __('Refund was failed', 'rozetkapay-gateway'));
+        return new WP_Error('refund_failed', __('Refund was failed', 'buy-rozetkapay-woocommerce'));
     }
 
     public function is_available(): bool

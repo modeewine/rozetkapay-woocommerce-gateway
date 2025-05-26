@@ -357,11 +357,11 @@ class RozetkaPay_Callback
                     && !$order->is_paid()
                 ) {
                     $order->payment_complete($transaction_id ?? '');
-                    $order->add_order_note(__('Payment completed via RozetkaPay', 'rozetkapay-gateway'));
+                    $order->add_order_note(__('Payment completed via RozetkaPay', 'buy-rozetkapay-woocommerce'));
                 } elseif ($operation_status === 'failure' && $order->get_status() !== 'failed') {
                     $order->update_status(
                         'failed',
-                        __('Payment failed via RozetkaPay', 'rozetkapay-gateway'),
+                        __('Payment failed via RozetkaPay', 'buy-rozetkapay-woocommerce'),
                     );
                 }
                 break;
@@ -371,7 +371,7 @@ class RozetkaPay_Callback
                 if ($operation_status === 'success' && $order->get_status() !== 'cancelled') {
                     $order->update_status(
                         'cancelled',
-                        __('Payment cancelled via RozetkaPay', 'rozetkapay-gateway'),
+                        __('Payment cancelled via RozetkaPay', 'buy-rozetkapay-woocommerce'),
                     );
                 }
                 break;
@@ -442,7 +442,7 @@ class RozetkaPay_Callback
 
         if (!empty($value = $shippingData['apartment'] ?? null)) {
             /* translators: apartment value */
-            $order->set_shipping_address_2(sprintf(__('apartment %s', 'rozetkapay-gateway'), $value));
+            $order->set_shipping_address_2(sprintf(__('apartment %s', 'buy-rozetkapay-woocommerce'), $value));
         }
 
         if (!empty($value = $shippingData['delivery_type'] ?? null)) {

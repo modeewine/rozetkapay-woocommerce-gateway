@@ -7,7 +7,7 @@ class RozetkaPay_Order_Payment_Action
         add_action('admin_menu', function(){
             add_submenu_page(
                 null,
-                __('RozetkaPay payment receipt', 'rozetkapay-gateway'),
+                __('RozetkaPay payment receipt', 'buy-rozetkapay-woocommerce'),
                 null,
                 'manage_woocommerce',
                 'rozetkapay-payment-receipt',
@@ -18,7 +18,7 @@ class RozetkaPay_Order_Payment_Action
         add_action('admin_menu', function(){
             add_submenu_page(
                 null,
-                __('RozetkaPay resend payment callback', 'rozetkapay-gateway'),
+                __('RozetkaPay resend payment callback', 'buy-rozetkapay-woocommerce'),
                 null,
                 'manage_woocommerce',
                 'rozetkapay-resend-payment-callback',
@@ -29,7 +29,7 @@ class RozetkaPay_Order_Payment_Action
         add_action('admin_menu', function(){
             add_submenu_page(
                 null,
-                __('RozetkaPay cancel payment', 'rozetkapay-gateway'),
+                __('RozetkaPay cancel payment', 'buy-rozetkapay-woocommerce'),
                 null,
                 'manage_woocommerce',
                 'rozetkapay-cancel-payment',
@@ -121,11 +121,11 @@ class RozetkaPay_Order_Payment_Action
         } else {
             if ($_GET['sent'] === 'yes') {
                 echo '<div class="updated"><p>'
-                    . esc_html__('Payment callback was successfully resent', 'rozetkapay-gateway')
+                    . esc_html__('Payment callback was successfully resent', 'buy-rozetkapay-woocommerce')
                     . '</p></div>';
             } else {
                 echo '<div class="error"><p>'
-                    . esc_html__('Something went wrong', 'rozetkapay-gateway')
+                    . esc_html__('Something went wrong', 'buy-rozetkapay-woocommerce')
                     . '</p></div>';
             }
         }
@@ -149,7 +149,7 @@ class RozetkaPay_Order_Payment_Action
         ?>
         <p>
             <a href="<?php echo esc_url($back_url) ?>" class="page-title-action">
-                <?php echo esc_html__('Back to order view', 'rozetkapay-gateway'); ?>
+                <?php echo esc_html__('Back to order view', 'buy-rozetkapay-woocommerce'); ?>
             </a>
         </p>
         <?php

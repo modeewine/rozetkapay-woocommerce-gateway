@@ -7,7 +7,7 @@ final class RozetkaPay_Const {
     public const ID_PAYMENT_GATEWAY = 'rozetkapay';
     public const MAX_LOG_ITEMS = 50;
     public const ID_BUY_ONE_CLICK = 'rozetkapay-one-click';
-    public const TEXT_DOMAIN = 'rozetkapay-gateway';
+    public const TEXT_DOMAIN = 'buy-rozetkapay-woocommerce';
     public const PAYMENT_MODE = 'express_checkout';
     public const PAYMENT_CURRENCIES = ['UAH'];
     public const HEADER_SIGNATURE = 'X-Rozetkapay-Signature';
