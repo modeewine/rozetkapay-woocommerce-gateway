@@ -4,7 +4,11 @@ class RozetkaPay_Admin_View
 {
     public static function init(): void
     {
-        if (self::is_available()) {
+        add_action('current_screen', function(){
+            if (!self::is_available(get_current_screen())) {
+                return;
+            }
+
             add_action('woocommerce_admin_order_data_after_billing_address', [__CLASS__, 'view_billing_info'], 10, 1);
             add_action('woocommerce_admin_order_data_after_shipping_address', [__CLASS__, 'view_shipping_info'], 10, 1);
 
@@ -18,7 +22,7 @@ class RozetkaPay_Admin_View
                     'high'
                 );
             });
-        }
+        });
 
         add_action('admin_menu', function(){
             add_submenu_page(
@@ -113,8 +117,19 @@ class RozetkaPay_Admin_View
         }
     }
 
-    public static function view_order_metabox(WC_Order $order): void
+    /**
+     * @param WC_Order|WP_Post $order
+     */
+    public static function view_order_metabox($order): void
     {
+        if ($order instanceof WP_Post) {
+            $order = wc_get_order($order->ID);
+        }
+
+        if (!$order instanceof WC_Order) {
+            return;
+        }
+
         $payment_info_url = self::generate_metabox_action_url('payment-info', $order->get_id());
         $payment_receipt_url = self::generate_metabox_action_url('payment-receipt', $order->get_id());
         $resend_payment_callback_url =
@@ -189,7 +204,7 @@ class RozetkaPay_Admin_View
             $id,
             'order_id=' . $order_id
             . '&' . RozetkaPay_Helper::generate_nonce_key($id, '_nonce') . '='
-                . wp_create_nonce(RozetkaPay_Helper::generate_nonce_key($id, '_action'))
+            . wp_create_nonce(RozetkaPay_Helper::generate_nonce_key($id, '_action'))
         );
     }
 
@@ -253,15 +268,26 @@ class RozetkaPay_Admin_View
         }
     }
 
-    private static function is_available(): bool
+    private static function is_available(?WP_Screen $screen): bool
     {
-        if (!RozetkaPay_Helper::is_order_edit_page()) {
+        if (!$screen) {
+            return false;
+        }
+
+        $id = 0;
+
+        if (preg_match('/^woocommerce_page_wc-orders/i', $screen->id)) {
+            $id = (int) sanitize_text_field(wp_unslash($_GET['id'] ?? 0));
+        } else if (preg_match('/^shop_order($|_)/i', $screen->id)) {
+            $id = (int) sanitize_text_field(wp_unslash($_GET['post'] ?? 0));
+        }
+
+        if (!$id) {
             return false;
         }
 
         return
-            ($post = get_post(sanitize_text_field(wp_unslash($_GET['id'] ?? 0))))
-            && preg_match('/^shop_order($|_)/i', $post->post_type)
-            && RozetkaPay_Helper::is_rozetkapay_order(new WC_Order($post->ID));
+            ($order = wc_get_order($id))
+            && RozetkaPay_Helper::is_rozetkapay_order($order);
     }
 }

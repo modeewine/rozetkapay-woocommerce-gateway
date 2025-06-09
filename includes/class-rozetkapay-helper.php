@@ -27,16 +27,6 @@ class RozetkaPay_Helper
         return WC()->payment_gateways->payment_gateways()[RozetkaPay_Const::ID_PAYMENT_GATEWAY];
     }
 
-    public static function is_order_edit_page(): bool
-    {
-        return
-            isset($_GET['page'])
-            && $_GET['page'] === 'wc-orders'
-            && isset($_GET['action'])
-            && $_GET['action'] === 'edit'
-            && !empty($_GET['id']);
-    }
-
     public static function is_rozetkapay_order(WC_Order $order): bool
     {
         return $order->get_payment_method() === RozetkaPay_Const::ID_PAYMENT_GATEWAY;
