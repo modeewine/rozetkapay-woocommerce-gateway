@@ -1,9 +1,10 @@
 <?php
+
 /**
  * Plugin Name: Buy with RozetkaPay Gateway for WooCommerce
  * Plugin URI:
  * Description: WooCommerce Payment Gateway for Buy with RozetkaPay
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: RozetkaPay
  * License: GPL2
  * Text Domain: buy-rozetkapay-woocommerce
@@ -24,7 +25,7 @@ define('ROZETKAPAY_GATEWAY_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('ROZETKAPAY_GATEWAY_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 // Load plugin textdomain
-add_action('plugins_loaded', function(){
+add_action('plugins_loaded', function () {
     require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-const.php';
 
     load_plugin_textdomain(
