@@ -130,8 +130,8 @@ class RozetkaPay_Gateway extends WC_Payment_Gateway
             'confirm' => true,
             /* translators: order number (id) description */
             'description' => sprintf(__('RozetkaPay order #%s', 'buy-rozetkapay-woocommerce'), $order->get_order_number()),
-            'callback_url' => WC()->api_request_url(
-                RozetkaPay_Helper::get_class_name(RozetkaPay_Callback::class),
+            'callback_url' => site_url(
+                '?wc-api=' . RozetkaPay_Helper::get_class_name(RozetkaPay_Callback::class)
             ),
             'result_url' => $order->get_checkout_order_received_url(),
             'customer' => null,
