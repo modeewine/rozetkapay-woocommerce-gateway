@@ -84,16 +84,20 @@ class RozetkaPay_One_Click
         $order = wc_create_order();
 
         if ($one_click_value > 0) {
-            $order->add_product(wc_get_product($one_click_value));
+            $quantity = sanitize_text_field(wp_unslash($_POST['quantity'] ?? 1));
+
+            $order->add_product(wc_get_product($one_click_value), $quantity);
+            $order->calculate_totals();
         } else {
             $cart_items = WC()->cart->get_cart();
 
             foreach ($cart_items as $cart_item) {
-                $order->add_product($cart_item['data']);
+                $order->add_product($cart_item['data'], $cart_item['quantity'] ?? 1);
             }
+
+            $order->set_total(WC()->cart->get_cart_contents_total());
         }
 
-        $order->calculate_totals();
         $order->set_payment_method(RozetkaPay_Const::ID_PAYMENT_GATEWAY);
         $order->set_customer_id(get_current_user_id());
         $order->save();
