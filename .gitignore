@@ -23,6 +23,7 @@ Desktop.ini
 
 # Logs
 *.log
+logs/
 
 # Editor directories and files
 .idea/
@@ -48,4 +49,4 @@ wp-content/
 wp-config.php
 .htaccess
 node_modules/
-vendor/ 
+vendor/

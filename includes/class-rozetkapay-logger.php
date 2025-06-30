@@ -1,5 +1,4 @@
 <?php
-
 /**
  * RozetkaPay Logger class.
  *
@@ -8,114 +7,111 @@
  * @package RozetkaPay Gateway
  */
 
-if ( ! defined('ABSPATH' ) ) {
-    exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
 }
 
 /**
  * RozetkaPay Logger Class
  */
-class RozetkaPay_Logger
-{
-    /**
-     * Get the log directory path.
-     *
-     * @return string
-     */
-    private static function get_log_dir(): string {
-        return ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'logs/';
-    }
+class RozetkaPay_Logger {
 
-    /**
-     * Get the full log file path based on log type.
-     *
-     * @param string $type Log type (e.g., api_requests, callbacks, errors).
-     *
-     * @return string
-     */
-    private static function get_log_file_path( string $type ): string {
-        return self::get_log_dir() . sanitize_file_name(strtolower($type)) . '.json';
-    }
+	/**
+	 * Get the log directory path.
+	 *
+	 * @return string
+	 */
+	private static function get_log_dir(): string {
+		return ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'logs/';
+	}
 
-    /**
-     * Add a new entry to the log.
-     *
-     * @param string $type Log type.
-     * @param array  $data Data to log.
-     */
-    public static function log(string $type, array $data, array $additionalData = []): void
-    {
-        $file = self::get_log_file_path($type);
+	/**
+	 * Get the full log file path based on log type.
+	 *
+	 * @param string $type Log type (e.g., api_requests, callbacks, errors).
+	 *
+	 * @return string
+	 */
+	private static function get_log_file_path( string $type ): string {
+		return self::get_log_dir() . sanitize_file_name( strtolower( $type ) ) . '.json';
+	}
 
-        if (!file_exists( $file)) {
-            file_put_contents($file, json_encode([], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-        }
+	/**
+	 * Add a new entry to the log.
+	 *
+	 * @param string $type Log type.
+	 * @param array  $data Data to log.
+	 * @param array  $additional_data Additional data for logging.
+	 */
+	public static function log( string $type, array $data, array $additional_data = array() ): void {
+		$file = self::get_log_file_path( $type );
 
-        $existing_data = json_decode(file_get_contents($file), true);
+		if ( ! file_exists( $file ) ) {
+			file_put_contents( $file, wp_json_encode( array(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) );
+		}
 
-        if (!is_array( $existing_data)) {
-            $existing_data = [];
-        }
+		$existing_data = json_decode( file_get_contents( $file ), true );
 
-        $entry = [
-            'timestamp' => current_time('mysql'),
-            'data' => $data,
-        ];
+		if ( ! is_array( $existing_data ) ) {
+			$existing_data = array();
+		}
 
-        $entry = array_merge($entry, $additionalData);
+		$entry = array(
+			'timestamp' => current_time( 'mysql' ),
+			'data'      => $data,
+		);
 
-        self::add_log_entry($existing_data, $entry, RozetkaPay_Const::MAX_LOG_ITEMS);
+		$entry = array_merge( $entry, $additional_data );
 
-        file_put_contents($file, json_encode($existing_data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-    }
+		self::add_log_entry( $existing_data, $entry, RozetkaPay_Const::MAX_LOG_ITEMS );
 
-    /**
-     * Retrieve log entries.
-     *
-     * @param string $type Log type.
-     *
-     * @return array
-     */
-    public static function get_logs( string $type ): array
-    {
-        $file = self::get_log_file_path($type);
+		file_put_contents( $file, wp_json_encode( $existing_data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) );
+	}
 
-        if (file_exists($file)) {
-            $content = json_decode(file_get_contents( $file ), true);
+	/**
+	 * Retrieve log entries.
+	 *
+	 * @param string $type Log type.
+	 *
+	 * @return array
+	 */
+	public static function get_logs( string $type ): array {
+		$file = self::get_log_file_path( $type );
 
-            return is_array($content) ? array_reverse($content) : [];
-        }
+		if ( file_exists( $file ) ) {
+			$content = json_decode( file_get_contents( $file ), true );
 
-        return [];
-    }
+			return is_array( $content ) ? array_reverse( $content ) : array();
+		}
 
-    /**
-     * Clear log entries.
-     *
-     * @param string $type Log type.
-     */
-    public static function clear_logs( string $type ): void
-    {
-        $file = self::get_log_file_path( $type );
+		return array();
+	}
 
-        if (file_exists($file)) {
-            file_put_contents($file, json_encode([], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-        }
-    }
+	/**
+	 * Clear log entries.
+	 *
+	 * @param string $type Log type.
+	 */
+	public static function clear_logs( string $type ): void {
+		$file = self::get_log_file_path( $type );
 
-    /**
-     * Insert log item to the log array with max items limit
-     *
-     * @param array $logs
-     * @param array $log
-     * @param int $limit
-     */
-    private static function add_log_entry(array &$logs, array $log, int $limit): void
-    {
-        if (count($logs) >= $limit) {
-            array_shift($logs);
-        }
+		if ( file_exists( $file ) ) {
+			file_put_contents( $file, wp_json_encode( array(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) );
+		}
+	}
 
-        $logs[] = $log;
-    }
+	/**
+	 * Insert log item to the log array with max items limit
+	 *
+	 * @param array $logs Common array of logs.
+	 * @param array $log Current array of log.
+	 * @param int   $limit Limit of logs items length.
+	 */
+	private static function add_log_entry( array &$logs, array $log, int $limit ): void {
+		if ( count( $logs ) >= $limit ) {
+			array_shift( $logs );
+		}
+
+		$logs[] = $log;
+	}
 }
