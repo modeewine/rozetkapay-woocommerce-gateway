@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: Buy with RozetkaPay Gateway for WooCommerce
  * Plugin URI:
@@ -14,35 +13,40 @@
  * Tested up to: 6.8
  * WC requires at least: 8.0
  * WC tested up to: 9.8
+ *
+ * @package RozetkaPay Gateway
  */
 
-if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
 }
 
-// Define plugin constants
-define('ROZETKAPAY_GATEWAY_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('ROZETKAPAY_GATEWAY_PLUGIN_URL', plugin_dir_url(__FILE__));
+// Define plugin constants.
+define( 'ROZETKAPAY_GATEWAY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'ROZETKAPAY_GATEWAY_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
-// Load plugin textdomain
-add_action('plugins_loaded', function () {
-    require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-const.php';
+// Load plugin textdomain.
+add_action(
+	'plugins_loaded',
+	function () {
+		require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-const.php';
 
-    load_plugin_textdomain(
-        'buy-rozetkapay-woocommerce',
-        false,
-        dirname(plugin_basename(__FILE__)) . '/languages',
-    );
-});
+		load_plugin_textdomain(
+			'buy-rozetkapay-woocommerce',
+			false,
+			dirname( plugin_basename( __FILE__ ) ) . '/languages',
+		);
+	}
+);
 
-// Load the gateway only if WooCommerce is active
-add_action('plugins_loaded', 'gateway_init', 20);
+// Load the gateway only if WooCommerce is active.
+add_action( 'plugins_loaded', 'gateway_init', 20 );
 
-// Register the payment gateway
-add_filter('woocommerce_payment_gateways', 'rozetkapay_gateway_register_gateway');
+// Register the payment gateway.
+add_filter( 'woocommerce_payment_gateways', 'rozetkapay_gateway_register_gateway' );
 
-// Activation hook to create logs folder
-register_activation_hook(__FILE__, 'rozetkapay_gateway_activate');
+// Activation hook to create logs folder.
+register_activation_hook( __FILE__, 'rozetkapay_gateway_activate' );
 
 /**
  * Initializes the RozetkaPay Gateway.
@@ -56,30 +60,29 @@ register_activation_hook(__FILE__, 'rozetkapay_gateway_activate');
  *
  * @since 1.0.0
  */
-function gateway_init(): void
-{
-    if (!class_exists('WC_Payment_Gateway')) {
-        return;
-    }
+function gateway_init(): void {
+	if ( ! class_exists( 'WC_Payment_Gateway' ) ) {
+		return;
+	}
 
-    // Require necessary classes
-    require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-helper.php';
-    require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-logger.php';
-    require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-api.php';
-    require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-callback.php';
-    require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-gateway.php';
-    require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-one-click.php';
-    require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-admin-view.php';
-    require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-order-payment-action.php';
+	// Require necessary classes.
+	require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-helper.php';
+	require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-logger.php';
+	require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-api.php';
+	require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-callback.php';
+	require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-gateway.php';
+	require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-one-click.php';
+	require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-admin-view.php';
+	require_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'includes/class-rozetkapay-order-payment-action.php';
 
-    // Initialize callback handler
-    RozetkaPay_Callback::init();
+	// Initialize callback handler.
+	RozetkaPay_Callback::init();
 
-    // Initialize one-click integration
-    RozetkaPay_One_Click::init();
+	// Initialize one-click integration.
+	RozetkaPay_One_Click::init();
 
-    RozetkaPay_Admin_View::init();
-    RozetkaPay_Order_Payment_Action::init();
+	RozetkaPay_Admin_View::init();
+	RozetkaPay_Order_Payment_Action::init();
 }
 
 /**
@@ -91,39 +94,34 @@ function gateway_init(): void
  *
  * @return array The updated array of registered payment gateways.
  * @since 1.0.0
- *
  */
-function rozetkapay_gateway_register_gateway($methods): array
-{
-    $class = RozetkaPay_Helper::get_class_name(RozetkaPay_Gateway::class);
+function rozetkapay_gateway_register_gateway( $methods ): array {
+	$class = RozetkaPay_Helper::get_class_name( RozetkaPay_Gateway::class );
 
-    if (class_exists($class)) {
-        $methods[] = $class;
-    }
+	if ( class_exists( $class ) ) {
+		$methods[] = $class;
+	}
 
-    return $methods;
+	return $methods;
 }
 
 /**
  * Creates the logs folder when the plugin is activated.
- *
  * The folder is created with permissions 0755 and is created recursively if it doesn't exist.
  *
- * @since 1.0.0
+ * @global WP_Filesystem_Base $wp_filesystem
  */
-function rozetkapay_gateway_activate(): void
-{
-    /** @global WP_Filesystem_Base $wp_filesystem */
-    global $wp_filesystem;
+function rozetkapay_gateway_activate(): void {
+	global $wp_filesystem;
 
-    if (empty($wp_filesystem)) {
-        require_once ABSPATH . '/wp-admin/includes/file.php';
-        WP_Filesystem();
-    }
+	if ( empty( $wp_filesystem ) ) {
+		require_once ABSPATH . '/wp-admin/includes/file.php';
+		WP_Filesystem();
+	}
 
-    $log_dir = ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'logs';
+	$log_dir = ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'logs';
 
-    if (!$wp_filesystem->is_dir($log_dir)) {
-        $wp_filesystem->mkdir($log_dir, FS_CHMOD_DIR);
-    }
+	if ( ! $wp_filesystem->is_dir( $log_dir ) ) {
+		$wp_filesystem->mkdir( $log_dir, FS_CHMOD_DIR );
+	}
 }
