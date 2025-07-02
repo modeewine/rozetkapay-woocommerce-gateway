@@ -15,7 +15,6 @@ final class RozetkaPay_Const {
 	public const ID_PAYMENT_GATEWAY                   = 'rozetkapay';
 	public const MAX_LOG_ITEMS                        = 50;
 	public const ID_BUY_ONE_CLICK                     = 'rozetkapay-one-click';
-	public const TEXT_DOMAIN                          = 'buy-rozetkapay-woocommerce';
 	public const PAYMENT_MODE                         = 'express_checkout';
 	public const PAYMENT_CURRENCIES                   = array( 'UAH' );
 	public const HEADER_SIGNATURE                     = 'X-Rozetkapay-Signature';
@@ -26,4 +25,6 @@ final class RozetkaPay_Const {
 	public const RECIPIENT_PATRONYM_OPTION_KEY        = '_recipient_patronym';
 	public const PAYMENT_OPERATION_TYPE_OPTION_KEY    = '_payment_operation_type';
 	public const PRODUCT_DEFAULT_IMAGE_PATH           = 'assets/img/product-placeholder.png';
+	public const ORDER_STATUS_CREATED                 = 'rpaycreated';
+	public const ORDER_STATUS_POST_PAYMENT            = 'rpaypostpayment';
 }
