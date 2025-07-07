@@ -143,6 +143,18 @@ final class RozetkaPay_Init {
 				return $order_statuses;
 			}
 		);
+
+		add_filter(
+			'woocommerce_valid_order_statuses_for_payment_complete',
+			function ( $statuses ) {
+				$statuses[] = RozetkaPay_Const::ORDER_STATUS_CREATED;
+				$statuses[] = RozetkaPay_Const::ORDER_STATUS_POST_PAYMENT;
+
+				return $statuses;
+			},
+			10,
+			2,
+		);
 	}
 
 	/**
