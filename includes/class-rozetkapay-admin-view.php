@@ -16,7 +16,9 @@ class RozetkaPay_Admin_View {
 		add_action(
 			'current_screen',
 			function () {
-				if ( ! self::is_available( get_current_screen() ) ) {
+				$order = self::get_screen_editable_order( get_current_screen() );
+
+				if ( ! self::is_order_edit_page( $order ) ) {
 					return;
 				}
 
@@ -34,6 +36,17 @@ class RozetkaPay_Admin_View {
 							'side',
 							'high'
 						);
+					}
+				);
+
+				add_action(
+					'admin_footer',
+					function () use ( $order ) {
+						if ( ! $order ) {
+							return;
+						}
+
+						include_once ROZETKAPAY_GATEWAY_PLUGIN_DIR . 'templates/order-edit.php';
 					}
 				);
 			}
@@ -318,13 +331,15 @@ class RozetkaPay_Admin_View {
 	}
 
 	/**
-	 * Check is on available to show for order view page.
+	 * Extract order object from current edit page.
 	 *
 	 * @param WP_Screen|null $screen Admin screen object.
+	 *
+	 * @return WC_Order|null
 	 */
-	private static function is_available( ?WP_Screen $screen ): bool {
+	private static function get_screen_editable_order( ?WP_Screen $screen ): ?WC_Order {
 		if ( ! $screen ) {
-			return false;
+			return null;
 		}
 
 		$id = 0;
@@ -336,11 +351,20 @@ class RozetkaPay_Admin_View {
 		}
 
 		if ( ! $id ) {
-			return false;
+			return null;
 		}
 
 		$order = wc_get_order( $id );
 
+		return $order ? $order : null;
+	}
+
+	/**
+	 * Check is on available to show for order edit view page.
+	 *
+	 * @param WC_Order|null $order Order object.
+	 */
+	private static function is_order_edit_page( ?WC_Order $order ): bool {
 		return $order && RozetkaPay_Helper::is_rozetkapay_order( $order );
 	}
 }

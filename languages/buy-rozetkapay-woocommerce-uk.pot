@@ -4,6 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Buy with RozetkaPay Gateway for WooCommerce 1.0.4\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-02T06:04:39+00:00\n"
 "Last-Translator: RozetkaPay\n"
 "Language-Team: RozetkaPay\n"
 "MIME-Version: 1.0\n"
@@ -22,247 +23,277 @@ msgstr "Платіжний шлюз Купити з RozetkaPay для WooCommerc
 msgid "WooCommerce Payment Gateway for Buy with RozetkaPay"
 msgstr "Платіжний шлюз WooCommerce для Купити з RozetkaPay"
 
-#: includes/class-rozetkapay-admin-view.php:14
-msgid "RozetkaPay order"
-msgstr "RozetkaPay замовлення"
-
-#: includes/class-rozetkapay-admin-view.php:26
-msgid "RozetkaPay payment information"
-msgstr "Інформація про оплату через RozetkaPay"
-
-#: includes/class-rozetkapay-admin-view.php:43
-#: includes/class-rozetkapay-admin-view.php:66
-msgid "Patronym"
-msgstr "По батькові"
-
-#: includes/class-rozetkapay-admin-view.php:53
-msgid "Transaction ID"
-msgstr "Ідентифікатор транзакції"
-
-#: includes/class-rozetkapay-admin-view.php:64
-msgid "Payment upon receipt"
-msgstr "Оплата при отриманні"
-
-#: includes/class-rozetkapay-admin-view.php:76
-msgid "Delivery type"
-msgstr "Тип доставки"
-
-#: includes/class-rozetkapay-admin-view.php:86
-msgid "Provider"
-msgstr "Постачальник"
-
-#: includes/class-rozetkapay-admin-view.php:100
-msgid "Warehouse number"
-msgstr "Номер складу"
-
-#: includes/class-rozetkapay-admin-view.php:180
-#: includes/class-rozetkapay-admin-view.php:181
-#: templates/payment-logs-page.php:14
-msgid "RozetkaPay Logs"
-msgstr "RozetkaPay Логи"
-
-#: includes/class-rozetkapay-admin-view.php:193
-#: includes/class-rozetkapay-admin-view.php:194
-msgid "Requests"
-msgstr "Запити"
-
-#: includes/class-rozetkapay-admin-view.php:202
-#: includes/class-rozetkapay-admin-view.php:203
-msgid "Callbacks"
-msgstr "Колбеки"
-
-#: includes/class-rozetkapay-admin-view.php:211
-#: includes/class-rozetkapay-admin-view.php:212
-msgid "Errors"
-msgstr "Помилки"
-
-#: includes/class-rozetkapay-admin-view.php:233
-msgid "Department"
-msgstr "Відділення"
-
-#: includes/class-rozetkapay-admin-view.php:235
-msgid "Paketautomat"
-msgstr "Поштомат"
-
-#: includes/class-rozetkapay-admin-view.php:237
-msgid "Courier"
-msgstr "Курʼєром"
-
-#: includes/class-rozetkapay-api.php:43
-#: includes/class-rozetkapay-api.php:232
-#: includes/class-rozetkapay-api.php:281
-msgid "Invalid API response from RozetkaPay"
-msgstr "Невірна відповідь API від RozetkaPay"
-
-#: includes/class-rozetkapay-api.php:54
-msgid "Missing payment URL from RozetkaPay response"
-msgstr "Відсутня URL-адреса оплати у відповіді RozetkaPay"
-
-#: includes/class-rozetkapay-callback.php:370
-msgid "Payment completed via RozetkaPay"
-msgstr "Оплата здійснена через RozetkaPay"
-
-#: includes/class-rozetkapay-callback.php:374
-msgid "Payment failed via RozetkaPay"
-msgstr "Оплата через RozetkaPay не вдалася"
-
-#: includes/class-rozetkapay-callback.php:384
-msgid "Payment cancelled via RozetkaPay"
-msgstr "Платіж скасовано через RozetkaPay"
-
-#: includes/class-rozetkapay-gateway.php:27
-#: includes/class-rozetkapay-gateway.php:40
+#. Author of the plugin
+#: rozetkapay-gateway.php
+#: includes/class-rozetkapay-gateway.php:42
+#: includes/class-rozetkapay-gateway.php:55
 msgid "RozetkaPay"
 msgstr "RozetkaPay"
 
-#: includes/class-rozetkapay-gateway.php:28
+#: includes/class-rozetkapay-admin-view.php:33
+msgid "RozetkaPay order"
+msgstr "RozetkaPay замовлення"
+
+#: includes/class-rozetkapay-admin-view.php:60
+msgid "RozetkaPay payment information"
+msgstr "Інформація про оплату через RozetkaPay"
+
+#: includes/class-rozetkapay-admin-view.php:82
+#: includes/class-rozetkapay-admin-view.php:118
+msgid "Patronym"
+msgstr "По батькові"
+
+#: includes/class-rozetkapay-admin-view.php:92
+msgid "Transaction ID"
+msgstr "Ідентифікатор транзакції"
+
+#: includes/class-rozetkapay-admin-view.php:103
+#: templates/order-edit.php:24
+msgid "Payment upon receipt"
+msgstr "Оплата при отриманні"
+
+#: includes/class-rozetkapay-admin-view.php:128
+msgid "Delivery type"
+msgstr "Тип доставки"
+
+#: includes/class-rozetkapay-admin-view.php:138
+msgid "Provider"
+msgstr "Постачальник"
+
+#: includes/class-rozetkapay-admin-view.php:152
+msgid "Warehouse number"
+msgstr "Номер складу"
+
+#: includes/class-rozetkapay-admin-view.php:274
+#: includes/class-rozetkapay-admin-view.php:275
+#: templates/payment-logs-page.php:13
+msgid "RozetkaPay Logs"
+msgstr "RozetkaPay Логи"
+
+#: includes/class-rozetkapay-admin-view.php:287
+#: includes/class-rozetkapay-admin-view.php:288
+msgid "Requests"
+msgstr "Запити"
+
+#: includes/class-rozetkapay-admin-view.php:296
+#: includes/class-rozetkapay-admin-view.php:297
+msgid "Callbacks"
+msgstr "Колбеки"
+
+#: includes/class-rozetkapay-admin-view.php:305
+#: includes/class-rozetkapay-admin-view.php:306
+msgid "Errors"
+msgstr "Помилки"
+
+#: includes/class-rozetkapay-admin-view.php:323
+msgid "Department"
+msgstr "Відділення"
+
+#: includes/class-rozetkapay-admin-view.php:325
+msgid "Paketautomat"
+msgstr "Поштомат"
+
+#: includes/class-rozetkapay-admin-view.php:327
+msgid "Courier"
+msgstr "Курʼєром"
+
+#: includes/class-rozetkapay-api.php:41
+#: includes/class-rozetkapay-api.php:237
+#: includes/class-rozetkapay-api.php:301
+msgid "Invalid API response from RozetkaPay"
+msgstr "Невірна відповідь API від RozetkaPay"
+
+#: includes/class-rozetkapay-api.php:52
+msgid "Missing payment URL from RozetkaPay response"
+msgstr "Відсутня URL-адреса оплати у відповіді RozetkaPay"
+
+#: includes/class-rozetkapay-callback.php:404
+msgid "Payment completed via RozetkaPay"
+msgstr "Оплата здійснена через RozetkaPay"
+
+#: includes/class-rozetkapay-callback.php:408
+msgid "Payment failed via RozetkaPay"
+msgstr "Оплата через RozetkaPay не вдалася"
+
+#: includes/class-rozetkapay-callback.php:417
+msgid "Post payment via RozetkaPay"
+msgstr "Післяплата через RozetkaPay"
+
+#: includes/class-rozetkapay-callback.php:427
+msgid "Payment cancelled via RozetkaPay"
+msgstr "Платіж скасовано через RozetkaPay"
+
+#: includes/class-rozetkapay-callback.php:517
+msgid "apartment %s"
+msgstr "Відділення %s"
+
+#: includes/class-rozetkapay-gateway.php:43
 msgid "Accept payments via Buy with RozetkaPay"
 msgstr "Приймайте платежі через Купити з RozetkaPay"
 
-#: includes/class-rozetkapay-gateway.php:41
+#: includes/class-rozetkapay-gateway.php:56
 msgid "Pay via Buy with RozetkaPay"
 msgstr "Оплатіть через Купити з RozetkaPay"
 
-#: includes/class-rozetkapay-gateway.php:64
+#: includes/class-rozetkapay-gateway.php:78
 msgid "Enable/Disable"
 msgstr "Увімкнути/Вимкнути"
 
-#: includes/class-rozetkapay-gateway.php:66
+#: includes/class-rozetkapay-gateway.php:80
 msgid "Enable RozetkaPay Payment"
 msgstr "Увімкнути оплату RozetkaPay"
 
-#: includes/class-rozetkapay-gateway.php:72
+#: includes/class-rozetkapay-gateway.php:84
+#: includes/class-rozetkapay-gateway.php:86
 msgid "Enable/Disable cart checkout payment gateway"
 msgstr "Увімкнути/вимкнути платіжний шлюз для оформлення замовлення в кошику"
 
-#: includes/class-rozetkapay-gateway.php:78
+#: includes/class-rozetkapay-gateway.php:90
+#: includes/class-rozetkapay-gateway.php:92
 msgid "Enable/Disable `Pay one-click` button"
 msgstr "Увімкнути/вимкнути кнопку `Оплатити одним кліком`"
 
-#: includes/class-rozetkapay-gateway.php:82
+#: includes/class-rozetkapay-gateway.php:96
 msgid "`Pay one-click` button view mode"
 msgstr "Тип вигляду кнопки `Оплата одним кліком`"
 
-#: includes/class-rozetkapay-gateway.php:84
+#: includes/class-rozetkapay-gateway.php:98
 msgid "Select button view mode"
 msgstr "Виберіть тип вигляду кнопоки"
 
-#: includes/class-rozetkapay-gateway.php:87
+#: includes/class-rozetkapay-gateway.php:101
 msgid "Black"
 msgstr "Чорний"
 
-#: includes/class-rozetkapay-gateway.php:88
+#: includes/class-rozetkapay-gateway.php:102
 msgid "White"
 msgstr "Білий"
 
-#: includes/class-rozetkapay-gateway.php:92
+#: includes/class-rozetkapay-gateway.php:106
 msgid "API Login"
 msgstr "API Логін"
 
-#: includes/class-rozetkapay-gateway.php:94
+#: includes/class-rozetkapay-gateway.php:108
 msgid "Enter your RozetkaPay API login"
 msgstr "Введіть свій логін для API RozetkaPay"
 
-#: includes/class-rozetkapay-gateway.php:98
+#: includes/class-rozetkapay-gateway.php:112
 msgid "API Password"
 msgstr "API Пароль"
 
-#: includes/class-rozetkapay-gateway.php:100
+#: includes/class-rozetkapay-gateway.php:114
 msgid "Enter your RozetkaPay API password"
 msgstr "Введіть свій пароль API RozetkaPay"
 
-#: includes/class-rozetkapay-gateway.php:118
+#: includes/class-rozetkapay-gateway.php:131
 msgid "Invalid order"
 msgstr "Недійсне замовлення"
 
-#: includes/class-rozetkapay-gateway.php:131
-#, php-format
+#: includes/class-rozetkapay-gateway.php:145
 msgid "RozetkaPay order #%s"
 msgstr "Номер замовлення RozetkaPay #%s"
 
-#: includes/class-rozetkapay-gateway.php:150
+#: includes/class-rozetkapay-gateway.php:166
 msgid "Awaiting RozetkaPay payment"
 msgstr "Очікування платежу RozetkaPay"
 
-#: includes/class-rozetkapay-gateway.php:183
+#: includes/class-rozetkapay-gateway.php:206
 msgid "Refund was initialized. Waiting for a response from RozetkaPay."
 msgstr "Повернення коштів ініційовано. Очікується відповідь від RozetkaPay."
 
-#: includes/class-rozetkapay-gateway.php:190
+#: includes/class-rozetkapay-gateway.php:216
 msgid "Refund was failed"
 msgstr "Повернення коштів не вдалося"
 
-#: includes/class-rozetkapay-order-payment-action.php:10
+#: includes/class-rozetkapay-init.php:103
+#: includes/class-rozetkapay-init.php:130
+msgid "RPay created"
+msgstr "RPay створено"
+
+#: includes/class-rozetkapay-init.php:108
+msgid "RPay created (%s)"
+msgstr "RPay створено (%s)"
+
+#: includes/class-rozetkapay-init.php:115
+#: includes/class-rozetkapay-init.php:133
+msgid "RPay post payment"
+msgstr "RPay після оплата"
+
+#: includes/class-rozetkapay-init.php:120
+msgid "RPay post payment (%s)"
+msgstr "RPay після оплата (%s)"
+
+#: includes/class-rozetkapay-order-payment-action.php:21
 msgid "RozetkaPay payment receipt"
 msgstr "Квитанція про оплату RozetkaPay"
 
-#: includes/class-rozetkapay-order-payment-action.php:21
+#: includes/class-rozetkapay-order-payment-action.php:35
 msgid "RozetkaPay resend payment callback"
 msgstr "Повторний виклик колбеку платежу RozetkaPay"
 
-#: includes/class-rozetkapay-order-payment-action.php:32
+#: includes/class-rozetkapay-order-payment-action.php:49
 msgid "RozetkaPay cancel payment"
 msgstr "Скасувати платіж RozetkaPay"
 
-#: includes/class-rozetkapay-order-payment-action.php:96
+#: includes/class-rozetkapay-order-payment-action.php:146
 msgid "Payment callback was successfully resent"
 msgstr "Колбек оплати успішно повторено"
 
-#: includes/class-rozetkapay-order-payment-action.php:100
+#: includes/class-rozetkapay-order-payment-action.php:150
 msgid "Something went wrong"
 msgstr "Щось пішло не так"
 
-#: includes/class-rozetkapay-order-payment-action.php:124
-#: templates/payment-info-page.php:16
+#: includes/class-rozetkapay-order-payment-action.php:183
+#: templates/payment-info-page.php:21
 msgid "Back to order view"
 msgstr "Назад до перегляду замовлення"
 
-#: templates/one-click-product-button.php:22
-#: templates/one-click-cart-button.php:23
+#: templates/one-click-cart-button.php:29
+#: templates/one-click-product-button.php:28
 msgid "Купити з"
 msgstr "Купити з"
 
-#: templates/one-click-product-button.php:26
-#: templates/one-click-cart-button.php:27
+#: templates/one-click-cart-button.php:33
+#: templates/one-click-product-button.php:32
 msgid "Buy via RozetkaPay"
 msgstr "Купити через RozetkaPay"
 
-#: templates/order-metabox.php:16
+#: templates/order-metabox.php:21
 msgid "Payment info"
 msgstr "Інформація про оплату"
 
-#: templates/order-metabox.php:25
+#: templates/order-metabox.php:30
 msgid "Payment receipt"
 msgstr "Квитанція про оплату"
 
-#: templates/order-metabox.php:34
+#: templates/order-metabox.php:39
 msgid "Resend payment callback"
 msgstr "Надіслати колбек щодо оплати"
 
-#: templates/order-metabox.php:43
+#: templates/order-metabox.php:48
 msgid "Cancel payment"
 msgstr "Скасувати платіж"
 
-#: templates/payment-info-page.php:12
+#: templates/payment-info-page.php:17
 msgid "RozetkaPay payment information for the external order ID"
 msgstr "Інформація про оплату RozetkaPay для замовлення"
 
-#: templates/payment-logs-page.php:24
+#: templates/payment-logs-page.php:23
 msgid "Logs are cleared successfully"
 msgstr "Логи успішно очищено"
 
-#: templates/payment-logs-page.php:35
+#: templates/payment-logs-page.php:34
 msgid "Clear Logs"
 msgstr "Очистити Логи"
 
-#: templates/payment-logs-page.php:43
+#: templates/payment-logs-page.php:42
 msgid "Timestamp"
 msgstr "Позначка часу"
 
-#: templates/payment-logs-page.php:44
+#: templates/payment-logs-page.php:43
 msgid "Data"
 msgstr "Дані"
 
-#: templates/payment-logs-page.php:71
+#: templates/payment-logs-page.php:78
 msgid "No log entries found"
 msgstr "Записів в лозі не знайдено"

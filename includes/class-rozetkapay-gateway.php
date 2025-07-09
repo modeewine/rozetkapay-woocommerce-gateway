@@ -161,7 +161,10 @@ class RozetkaPay_Gateway extends WC_Payment_Gateway {
 		}
 
 		// Mark order as pending payment.
-		$order->update_status( 'pending', __( 'Awaiting RozetkaPay payment', 'buy-rozetkapay-woocommerce' ) );
+		$order->update_status(
+			RozetkaPay_Const::ORDER_STATUS_CREATED,
+			__( 'Awaiting RozetkaPay payment', 'buy-rozetkapay-woocommerce' ),
+		);
 
 		// Redirect to payment page.
 		return array(

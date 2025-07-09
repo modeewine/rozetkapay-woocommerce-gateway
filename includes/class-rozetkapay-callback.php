@@ -13,7 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * RozetkaPay Callback interaction class.
  */
 class RozetkaPay_Callback {
-
 	/**
 	 * Initialize callback endpoint.
 	 */
@@ -351,8 +350,8 @@ class RozetkaPay_Callback {
 
 		self::handle_order_status(
 			$order,
-			'payment',
-			'success',
+			'post_payment',
+			null,
 			null,
 		);
 
@@ -386,13 +385,13 @@ class RozetkaPay_Callback {
 	 *
 	 * @param WC_Order    $order            Order object.
 	 * @param string      $operation        Operation name.
-	 * @param string      $operation_status Operation status.
+	 * @param string|null $operation_status Operation status.
 	 * @param string|null $transaction_id   Transaction ID.
 	 */
 	private static function handle_order_status(
 		WC_Order $order,
 		string $operation,
-		string $operation_status,
+		?string $operation_status,
 		?string $transaction_id
 	): void {
 		switch ( $operation ) {
@@ -407,6 +406,15 @@ class RozetkaPay_Callback {
 					$order->update_status(
 						'failed',
 						__( 'Payment failed via RozetkaPay', 'buy-rozetkapay-woocommerce' ),
+					);
+				}
+				break;
+
+			case 'post_payment':
+				if ( $order->get_status() !== RozetkaPay_Const::ORDER_STATUS_POST_PAYMENT ) {
+					$order->update_status(
+						RozetkaPay_Const::ORDER_STATUS_POST_PAYMENT,
+						__( 'Post payment via RozetkaPay', 'buy-rozetkapay-woocommerce' ),
 					);
 				}
 				break;
