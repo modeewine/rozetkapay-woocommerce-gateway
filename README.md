@@ -96,6 +96,15 @@ WooCommerce Payment Gateway для Купити з RozetkaPay
 
 ---
 
+## Розробка
+
+Проект використовує wordpress coding standards
+
+- для того, щоб проверити код на стандарти WordPress використовуйте команду `php ./vendor/bin/phpcs --warning-severity=0`
+- для того, щоб виправити всі помилки, які можуть бути виправлені автоматично використовуйте команду `php ./vendor/bin/phpcbf`
+
+---
+
 ## Підтримка
 
 З питань підтримки звертайтеся до [RozetkaPay](https://rozetkapay.com/) або створіть issue у цьому репозиторії.

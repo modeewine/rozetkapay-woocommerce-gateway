@@ -9,7 +9,7 @@
  * Class of configuration constants.
  */
 final class RozetkaPay_Const {
-	public const VERSION                              = '1.0.6';
+	public const VERSION                              = '1.0.7';
 	public const API_BASE_URL                         = 'https://api.rozetkapay.com/api';
 	public const API_REQUEST_TIMEOUT                  = 60;
 	public const ID_PAYMENT_GATEWAY                   = 'rozetkapay';
