@@ -6,7 +6,7 @@ Tested up to: 6.8
 Requires PHP: 7.3
 WC requires at least: 8.0
 WC tested up to: 9.8
-Stable tag: 1.0.5
+Stable tag: 1.0.7
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,4 +104,4 @@ Initial public release with full WooCommerce and RozetkaPay integration.
 
 == Support ==
 
-For support, contact [RozetkaPay](https://rozetkapay.com/) or open an issue in the repository. 
+For support, contact [RozetkaPay](https://rozetkapay.com/) or open an issue in the repository.

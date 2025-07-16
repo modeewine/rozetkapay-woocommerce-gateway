@@ -85,6 +85,7 @@ final class RozetkaPay_Init {
 		add_action(
 			'plugins_loaded',
 			function () {
+                // phpcs:ignore
 				load_plugin_textdomain(
 					'buy-rozetkapay-woocommerce',
 					false,
